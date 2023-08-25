@@ -7,10 +7,10 @@ import Detail from "../pages/Detail";
 const Routes = () => {
   return (
     <RouterRoutes>
-      <Route path="/:category/search/:keyword" element={<Catalog />} />;
-      <Route path="/:category/:id" element={<Detail />} />;
-      <Route path="/:category" element={<Catalog />} />;
-      <Route path="/" exact element={<Home />} />;
+      <Route path="/:category/search/:keyword" element={<Catalog />} />
+      <Route path="/:category/:id" element={<Detail />} />
+      <Route path="/:category" element={<Catalog />} />
+      <Route path="/" exact element={<Home />} />
     </RouterRoutes>
   );
 };
