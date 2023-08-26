@@ -17,7 +17,6 @@ const OutlineButton = (props) => {
       className={`btn-outline ${props.className}`}
       onClick={props.onClick ? () => props.onClick() : null}
     >
-      {" "}
       {props.children}
     </Button>
   );
@@ -25,6 +24,14 @@ const OutlineButton = (props) => {
 
 Button.propTypes = {
   onClick: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node, // Add this line for children validation
+};
+
+OutlineButton.propTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node, // Add this line for children validation
 };
 
 export default Button;
