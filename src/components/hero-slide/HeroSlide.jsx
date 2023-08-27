@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import Button, { OutlineButton } from "../button/Button";
 
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
@@ -34,16 +37,54 @@ const HeroSlide = () => {
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}
-        autoplay={{ delay: 3000 }}
+        // autoplay={{ delay: 3000 }}
       >
         {movieItems.map((item, i) => (
           <SwiperSlide key={i}>
             {({ isActive }) => (
-              <img src={apiConfig.originalImage(item.backdrop_path)} />
+              <HeroSlideItem
+                item={item}
+                className={`${isActive ? "active" : ""}`}
+              />
             )}
           </SwiperSlide>
         ))}
       </Swiper>
+    </div>
+  );
+};
+
+const HeroSlideItem = (props) => {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  const item = props.item;
+
+  const background = apiConfig.originalImage(
+    item.backdrop_path ? item.backdrop_path : item.poster_path
+  );
+
+  return (
+    <div
+      className={`hero-slide__item  ${props.className}`}
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      <div className="hero-slide__item__content container">
+        <div className="hero-slide__item__content__info">
+          <h2 className="title">{item.title}</h2>
+          <div className="overview">{item.overview}</div>
+          <div className="btns">
+            <Button onClick={() => navigate("/movie/" + item.id)}>
+              Watch now
+            </Button>
+            <OutlineButton onClick={() => console.log("trailer")}>
+              Watch trailer
+            </OutlineButton>
+          </div>
+        </div>
+        <div className="hero-slide__item__content__poster">
+          <img src={apiConfig.w500Image(item.poster_path)} alt="" />
+        </div>
+      </div>
     </div>
   );
 };
