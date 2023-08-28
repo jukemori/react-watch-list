@@ -4,12 +4,10 @@ import PropTypes from "prop-types";
 import "./movie-list.scss";
 
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Link } from "react-router-dom";
-
-import Button from "../button/Button";
 
 import tmdbApi, { category } from "../../api/tmdbApi";
-import apiConfig from "../../api/apiConfig";
+
+import MovieCard from "../movie-card/MovieCard";
 
 const MovieList = (props) => {
   const [items, setItems] = useState([]);
@@ -33,14 +31,14 @@ const MovieList = (props) => {
       setItems(response.results);
     };
     getList();
-  }, []);
+  }, [props.category, props.id, props.type]);
 
   return (
     <div className="movie-list">
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
         {items.map((item, i) => (
           <SwiperSlide key={i}>
-            <img src={apiConfig.w500Image(item.poster_path)} alt="" />
+            <MovieCard item={item} category={props.category} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -49,7 +47,7 @@ const MovieList = (props) => {
 };
 
 MovieList.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
