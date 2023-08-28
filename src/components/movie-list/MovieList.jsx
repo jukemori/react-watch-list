@@ -35,7 +35,17 @@ const MovieList = (props) => {
     getList();
   }, []);
 
-  return <div>MovieList</div>;
+  return (
+    <div className="movie-list">
+      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+        {items.map((item, i) => (
+          <SwiperSide key={i}>
+            <img src={apiConfig.w500Image(item.poster_path)} alt="" />
+          </SwiperSide>
+        ))}
+      </Swiper>
+    </div>
+  );
 };
 
 MovieList.propTypes = {
