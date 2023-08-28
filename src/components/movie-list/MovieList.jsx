@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./movie-list.scss";
 
-import { SwiperSide, Swiper } from "swiper/react";
+import { SwiperSlide, Swiper } from "swiper/react";
 import { Link } from "react-router-dom";
 
 import Button from "../button/Button";
@@ -39,9 +39,9 @@ const MovieList = (props) => {
     <div className="movie-list">
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
         {items.map((item, i) => (
-          <SwiperSide key={i}>
+          <SwiperSlide key={i}>
             <img src={apiConfig.w500Image(item.poster_path)} alt="" />
-          </SwiperSide>
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>
