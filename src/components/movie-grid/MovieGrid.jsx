@@ -103,7 +103,14 @@ const MovieSearch = (props) => {
 
   const goToSearch = useCallback(() => {
     if (keyword.trim().length > 0) {
-      navigate(`${props.category}/search/${keyword}`);
+      let routePrefix = "";
+      if (props.category === category.movie) {
+        routePrefix = "movie";
+      } else if (props.category === category.tv) {
+        routePrefix = "tv";
+      }
+      navigate(`/${routePrefix}/search/${keyword}`);
+      setKeyword(""); // Reset the keyword state
     }
   }, [keyword, props.category, navigate]);
 
