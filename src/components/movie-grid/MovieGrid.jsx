@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router";
+import PropTypes from "prop-types";
 
 import "./movie-grid.scss";
 
@@ -91,6 +92,10 @@ const MovieGrid = (props) => {
   );
 };
 
+MovieGrid.propTypes = {
+  category: PropTypes.string.isRequired,
+};
+
 const MovieSearch = (props) => {
   const navigate = useNavigate();
 
@@ -128,6 +133,11 @@ const MovieSearch = (props) => {
       </Button>
     </div>
   );
+};
+
+MovieSearch.propTypes = {
+  category: PropTypes.string.isRequired,
+  keyword: PropTypes.string,
 };
 
 export default MovieGrid;
