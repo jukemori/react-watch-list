@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-
 import tmdbApi from "../../api/tmdbApi";
 
 const VideoList = (props) => {
@@ -25,6 +25,10 @@ const VideoList = (props) => {
   );
 };
 
+VideoList.propTypes = {
+  id: PropTypes.number.isRequired,
+};
+
 const Video = (props) => {
   const item = props.item;
   const iframeRef = useRef(null);
@@ -47,6 +51,13 @@ const Video = (props) => {
       ></iframe>
     </div>
   );
+};
+
+Video.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    key: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default VideoList;

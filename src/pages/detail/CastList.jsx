@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
@@ -32,6 +32,10 @@ const CastList = (props) => {
       ))}
     </div>
   );
+};
+
+CastList.propTypes = {
+  id: PropTypes.number.isRequired,
 };
 
 export default CastList;
