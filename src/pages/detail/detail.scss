@@ -73,11 +73,12 @@
     }
 
     .genres {
-      & > * ~ * {
-        margin-left: .5rem;
-      }
+      display: flex;
+      flex-wrap: wrap;
 
       &__item {
+        margin-left: .5rem;
+        margin-bottom: .5rem;
         padding: .5rem 1.5rem;
         border: 2px solid $white;
         border-radius: $border-radius;
@@ -111,6 +112,7 @@
 
 .video {
   margin-bottom: 3rem;
+  max-width: 700px;
 
   &__title {
     margin-bottom: 1.5rem;

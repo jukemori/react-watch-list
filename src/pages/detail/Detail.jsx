@@ -72,7 +72,8 @@ const Detail = () => {
             </div>
             <div className="section mb-3">
               <div className="section__header mb-2">
-                <h2>Similar</h2>
+                <h2>{`Related ${category.charAt(0).toUpperCase() +
+                  category.slice(1)}s`}</h2>
               </div>
               <MovieList category={category} type="similar" id={item.id} />
             </div>
